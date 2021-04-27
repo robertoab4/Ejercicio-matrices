@@ -122,17 +122,10 @@ public class Main {
 		// Comprobacion de que las columnas de la primera sean igual a las filas de la segunda
 		if (matriz1[0].length == matriz2.length) {
 			
-			// Genera la matriz resultante de la multiplicación
-			int resultado[][] = new int[matriz1.length][matriz2[0].length];
-			for (int i = 0; i < matriz1.length; i++) {
-				for (int j = 0; j < matriz2[0].length; j++) {
-					for (int k = 0; k < matriz1[0].length; k++) {
-						resultado[i][j] += (matriz1[i][k] * matriz2[k][j]);
-					}
-				}
-			}
+		// Genera la matriz resultante de la multiplicación
+		int resultado[][] = multiplicar(matriz1, matriz2);
 
-			imprimirMatriz(resultado);
+		imprimirMatriz(resultado);
 			
 		} else {
 			System.out.println(
@@ -228,19 +221,10 @@ public class Main {
 		
 		// Condición de que la matriz sea cuadrada
 		if (matriz1.length == matriz1[0].length) {
-			int suma[][] = new int[matriz1.length][matriz1.length];
-			int resultado[][] = new int[matriz1.length][matriz1.length];
-				for (int i = 0; i < matriz1.length; i++) {
-					for (int j = 0; j < matriz1[0].length; j++) {
-						for (int k = 0; k < matriz1[0].length; k++) {
-							suma[i][j] += (matriz1[i][k] * matriz1[k][j]);
-							for (int e = 1; e < elevado; e++) {
-								resultado[i][j] += (matriz1[i][k] * suma[k][j]);
-							}
-						}
-					}
-				}
-
+			int resultado[][] = matriz1.clone();
+			for (int i = 1; i < elevado; i++) {
+				resultado = multiplicar(matriz1, resultado);
+			}
 			// Imprime la matriz resultante de la multiplicación
 			imprimirMatriz(resultado);
 		
@@ -327,5 +311,24 @@ public class Main {
 			System.out.println(Arrays.toString(matriz[i]));
 		}
 		System.out.println();
+	}
+	
+	/*
+	 * Multiplica dos matrices
+	 * @param matriz1[][] matriz a multiplicar
+	 * @param matriz2[][] matriz a multiplicar
+	 * @return El resultado de la multiplicacion
+	 */
+	public static int[][] multiplicar(int matriz1[][], int matriz2[][]) {
+		
+		int resultado[][] = new int[matriz1.length][matriz2[0].length];
+		for (int i = 0; i < matriz1.length; i++) {
+			for (int j = 0; j < matriz2[0].length; j++) {
+				for (int k = 0; k < matriz1[0].length; k++) {
+					resultado[i][j] += (matriz1[i][k] * matriz2[k][j]);
+				}
+			}
+		}
+		return resultado;
 	}
 }
