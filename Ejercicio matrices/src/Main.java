@@ -25,41 +25,41 @@ public class Main {
 	public static void elegirOpcion(int numero) {
 			switch (numero) {
 			case 1:
-				System.out.println("Has elegido la opción de sumar matrices. \n");
+				System.out.println("\nHas elegido la opción de sumar matrices.");
 				suma();				
 				break;
 			case 2:
-				System.out.println("Has elegido la opción de multiplicar una matriz por un número entero. \n");
+				System.out.println("\nHas elegido la opción de multiplicar una matriz por un número entero.");
 				multiplicarMatrizPorNumeroEntero();
 				break;
 			case 3:
-				System.out.println("Has elegido la opción de multiplicar matrices. \n");
+				System.out.println("\nHas elegido la opción de multiplicar matrices.");
 				multiplicarMatrizPorUnaMatriz();
 				break;
 			case 4:
-				System.out.println("Has elegido la opción de transponer una matriz. \n");
+				System.out.println("\nHas elegido la opción de transponer una matriz.");
 				transponer();
 				break;
 			case 5:
-				System.out.println("Has elegido la opción de obtener la diagonal principal de una matriz. \n");
+				System.out.println("\nHas elegido la opción de obtener la diagonal principal de una matriz.");
 				diagonalPrincipal();
 				break;
 			case 6:
-				System.out.println("Has elegido la opción de matriz simetrica. \n");
+				System.out.println("\nHas elegido la opción de matriz simetrica.");
 				simetrica();
 				break;
 			case 7:
-				System.out.println("Has elegido la opción de potencia. \n");
+				System.out.println("\nHas elegido la opción de potencia.");
 				potencia();
 				break;
 			case 8:
-				System.out.println("Has elegido la opción de restar matrices. \n");
+				System.out.println("\nHas elegido la opción de restar matrices.");
 				resta();
 				break;
 			case 9:
 				break;
 			default:
-				System.out.println("Te has equivocado de número, introduce un número del 1 al 9 \n");
+				System.out.println("\nTe has equivocado de número, introduce un número del 1 al 9 \n");
 				
 			}
 	}
@@ -69,24 +69,19 @@ public class Main {
 	 */
 	public static void suma() {
 
-		int matriz1[][] = generarMatriz();
-		int matriz2[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
+		int matriz2[][] = generarMatriz(2);
 
-		// Condicion de que las matrices sean iguales
-		if ((matriz1.length == matriz2.length) && (matriz1[0].length == matriz2[0].length)) {
+		// Condicion de que las matrices sean iguales en tamaño
+		if (condicionDos(matriz1, matriz2, "suma")) {
 
 			// Genera la matriz resultante de la suma
-			int resultado[][] = new int[matriz1.length][matriz1[0].length];
-			for (int i = 0; i < resultado.length; i++) {
-				for (int j = 0; j < resultado[0].length; j++) {
-					resultado[i][j] = matriz1[i][j] + matriz2[i][j];
-				}
-			}
+			int resultado[][] = sumarORestarMatrices(matriz1, matriz2, 1);
 
 			// Imprime la matriz resultante de la suma
 			imprimirMatriz(resultado);
 		} else {
-			System.out.println("Las matrices introducidas no son de igual tamaño y por ello no se pueden sumar. Introduce dos matrices de igual tamaño. \n");
+			System.out.println("\nLas matrices introducidas no son de igual tamaño y por ello no se pueden sumar. Introduce dos matrices de igual tamaño. \n");
 		}
 	}
 
@@ -95,9 +90,9 @@ public class Main {
 	 */
 	public static void multiplicarMatrizPorNumeroEntero() {
 
-		int matriz1[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
 
-		System.out.println("¿Por qué número quieres multiplicarla?");
+		System.out.println("\n¿Por qué número quieres multiplicarla?");
 		int numero = scn.nextInt();
 
 		// Genera la matriz resultante de la multiplicacion
@@ -116,20 +111,20 @@ public class Main {
 	 */
 	public static void multiplicarMatrizPorUnaMatriz() {
 
-		int matriz1[][] = generarMatriz();
-		int matriz2[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
+		int matriz2[][] = generarMatriz(2);
 
 		// Comprobacion de que las columnas de la primera sean igual a las filas de la segunda
-		if (matriz1[0].length == matriz2.length) {
+		if (condicionDos(matriz1, matriz2, "multiplicacion")) {
 			
 		// Genera la matriz resultante de la multiplicación
-		int resultado[][] = multiplicar(matriz1, matriz2);
+		int resultado[][] = multiplicarMatrices(matriz1, matriz2);
 
 		imprimirMatriz(resultado);
 			
 		} else {
 			System.out.println(
-					"El número de filas de la primera matriz debe ser igual al número de filas de la segunda matriz. \n");
+					"\nEl número de filas de la primera matriz debe ser igual al número de filas de la segunda matriz. \n");
 		}
 	}
 
@@ -138,7 +133,7 @@ public class Main {
 	 */
 	public static void transponer() {
 
-		int matriz1[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
 
 		// Genera la matriz resultante de transponer la matriz1
 		int resultado[][] = new int[matriz1[0].length][matriz1.length];
@@ -156,10 +151,10 @@ public class Main {
 	 */
 	public static void diagonalPrincipal() {
 
-		int matriz1[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
 
 		// Condición de que la matriz sea cuadrada
-		if (matriz1.length == matriz1[0].length) {
+		if (condicionUno(matriz1, "diagonal")) {
 			
 			// Genera un array con la diagonal principal en él.
 			int resultado[] = new int[matriz1.length];
@@ -171,11 +166,11 @@ public class Main {
 				}
 			}
 			// Imprime el array con la diagonal principal de la matriz
-			System.out.println("Array resultado: ");
-			System.out.println(Arrays.toString(resultado));
+			System.out.println("\nArray resultado: ");
+			System.out.println(Arrays.toString(resultado) + "\n");
 		} else {
 			System.out.println(
-					"La matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la diagonal principal");
+					"\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la diagonal principal\n");
 		}
 	}
 
@@ -184,28 +179,30 @@ public class Main {
 	 */
 	public static void simetrica() {
 
-		int matriz1[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
 		int filasPorColumnas = matriz1.length * matriz1[0].length;
 		int contador = 0;
 		
-		// Condición de que la matriz sea simetrica
-		if (matriz1.length == matriz1[0].length) {
+		// Condición de que la matriz sea cuadrada
+		if (condicionUno(matriz1, "simetrica")) {
 			
-			// Genera un array con la diagonal principal en él.
+			// Comprueba si la matriz es simetrica
 			for (int i = 0; i < matriz1.length; i++) {
 				for (int j = 0; j < matriz1[0].length; j++) {
 					if (matriz1[i][j] == matriz1[j][i]) {
 						contador++;
 						if (contador == filasPorColumnas) {
-							System.out.println("La matriz introducida es simetrica: ");
+							System.out.println("\nLa matriz introducida es simetrica:");
 							imprimirMatriz(matriz1);
+						}else {
+							System.out.println("\nLa matriz introducida no es simetrica\n");
 						}
 					}
 				}
 			}
 
 		} else {
-			System.out.println("La matriz introducida no es simetrica. Introduce una matriz simétrica");
+			System.out.println("\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada\n");
 		}
 	}
 
@@ -214,23 +211,25 @@ public class Main {
 	 */
 	public static void potencia() {
 
-		int matriz1[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
 		
-		System.out.println("A que numero quiere elevarla. \n");
+		System.out.println("\nA que numero quiere elevarla. \n");
 		int elevado = scn.nextInt();
 		
 		// Condición de que la matriz sea cuadrada
-		if (matriz1.length == matriz1[0].length) {
+		if (condicionUno(matriz1, "potencia")) {
+			
+			// Genera la matriz resultante de la potencia
 			int resultado[][] = matriz1.clone();
 			for (int i = 1; i < elevado; i++) {
-				resultado = multiplicar(matriz1, resultado);
+				resultado = multiplicarMatrices(matriz1, resultado);
 			}
 			// Imprime la matriz resultante de la multiplicación
 			imprimirMatriz(resultado);
 		
 		}
 		else {
-			System.out.println("La matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la matriz resultante");
+			System.out.println("\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la matriz resultante\n");
 		
 		}
 	}
@@ -240,26 +239,21 @@ public class Main {
 	 */
 	public static void resta() {
 
-		int matriz1[][] = generarMatriz();
-		int matriz2[][] = generarMatriz();
+		int matriz1[][] = generarMatriz(1);
+		int matriz2[][] = generarMatriz(2);
 
-		// Condicion de que las matrices sean iguales
-		if ((matriz1.length == matriz2.length) && (matriz1[0].length == matriz2[0].length)) {
+		// Condicion de que las matrices sean iguales en tamaño
+		if (condicionDos(matriz1, matriz2, "resta")) {
 
 			// Genera la matriz resultante de la resta
-			int resultado[][] = new int[matriz1.length][matriz1[0].length];
-			for (int i = 0; i < resultado.length; i++) {
-				for (int j = 0; j < resultado[0].length; j++) {
-					resultado[i][j] = matriz1[i][j] - matriz2[i][j];
-				}
-			}
+			int resultado[][] = sumarORestarMatrices(matriz1, matriz2, -1);
 
 			// Imprime la matriz resultante de la resta
 			imprimirMatriz(resultado);
 			
 		} else {
 			System.out.println(
-					"Las matrices introducidas no son de igual tamaño y por ello no se pueden restar. Introduce dos matrices de igual tamaño. \n");
+					"\nLas matrices introducidas no son de igual tamaño y por ello no se pueden restar. Introduce dos matrices de igual tamaño. \n");
 		}
 	}
 
@@ -283,14 +277,22 @@ public class Main {
 	 * Genera una matriz
 	 * @return Devuelve la matriz generada
 	 */
-	private static int[][] generarMatriz() {
-		System.out.println("Filas de la matriz: ");
+	private static int[][] generarMatriz(int numero) {
+		String posicion= "";
+	
+		if (numero == 1) {
+			posicion = "primera";
+		}else {
+			posicion = "segunda";
+		}
+		
+		System.out.println("\nFilas de la " + posicion + " matriz: ");
 		int filas = scn.nextInt();
-		System.out.println("Columnas de la matriz: ");
+		System.out.println("Columnas de la " + posicion + " matriz: ");
 		int columnas = scn.nextInt();
 		int matriz[][] = new int[filas][columnas];
 
-		System.out.println("Introduce valores en la matriz: \n");
+		System.out.println("\nIntroduce valores en la matriz:");
 			for (int i = 0; i < matriz.length; i++) {
 				System.out.println("Estas introduciendo la fila numero " + (i+1));
 				for (int j = 0; j < matriz[0].length; j++) {
@@ -306,7 +308,7 @@ public class Main {
 	 * @param matriz[][] Matriz a imprimir
 	 */
 	private static void imprimirMatriz(int matriz[][]) {
-		System.out.println("Matriz resultado: ");
+		System.out.println("\nMatriz resultado: ");
 		for (int i = 0; i < matriz.length; i++) {
 			System.out.println(Arrays.toString(matriz[i]));
 		}
@@ -315,11 +317,11 @@ public class Main {
 	
 	/*
 	 * Multiplica dos matrices
-	 * @param matriz1[][] matriz a multiplicar
-	 * @param matriz2[][] matriz a multiplicar
+	 * @param matriz1[][] La primera matriz a multiplicar
+	 * @param matriz2[][] La segunda matriz a multiplicar
 	 * @return El resultado de la multiplicacion
 	 */
-	public static int[][] multiplicar(int matriz1[][], int matriz2[][]) {
+	public static int[][] multiplicarMatrices(int matriz1[][], int matriz2[][]) {
 		
 		int resultado[][] = new int[matriz1.length][matriz2[0].length];
 		for (int i = 0; i < matriz1.length; i++) {
@@ -331,4 +333,60 @@ public class Main {
 		}
 		return resultado;
 	}
+	
+	/*
+	 * Suma dos matrices
+	 * @param matriz1[][] La primera matriz a sumar
+	 * @param matriz2[][] La segunda matriz a sumar
+	 * @param unoOMenosUno El numero que hace que sea suma o resta de matrices
+	 * @return El resultado de la suma
+	 */
+	public static int[][] sumarORestarMatrices(int matriz1[][], int matriz2[][], int unoOMenosno) {
+	
+		int resultado[][] = new int[matriz1.length][matriz1[0].length];
+		for (int i = 0; i < resultado.length; i++) {
+			for (int j = 0; j < resultado[0].length; j++) {
+				resultado[i][j] = matriz1[i][j] + (matriz2[i][j] * unoOMenosno);
+			}
+		}
+		return resultado;
+	}
+	
+	/*
+	 * Condicion de los metodos diagonal principal, siemtria y potencia
+	 * @param matriz1[][] La primera matriz
+	 * @param tipo La operacion que se va a hacer
+	 * @return Si cumple o no cumple la condicion
+	 */
+	public static boolean condicionUno(int matriz1[][], String tipo) {
+		boolean cumple = false;
+		switch(tipo) {
+				
+			case "diagonal":
+			case "simetrica":
+			case "potencia":
+					cumple = (matriz1.length == matriz1[0].length);
+		}
+		return cumple;
+	}
+	
+	/*
+	 * Condicion de la suma y la resta y multiplicacion de matrices
+	 * @param matriz1[][] La primera matriz
+	 * @param matriz2[][] La segunda matriz
+	 * @param tipo La operacion que se va a hacer
+	 * @return Si cumple o no cumple la condicion
+	 */
+	public static boolean condicionDos(int matriz1[][], int matriz2[][], String tipo) {
+		boolean cumple = false;
+		switch(tipo) {
+			case "suma": 
+			case "resta":
+				cumple = ((matriz1.length == matriz2.length) && (matriz1[0].length == matriz2[0].length));
+			case "multiplicacion":
+				cumple = matriz1[0].length == matriz2.length;
+		}
+		return cumple;
+	}
+	
 }
