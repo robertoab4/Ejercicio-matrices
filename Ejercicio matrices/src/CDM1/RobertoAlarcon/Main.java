@@ -1,9 +1,11 @@
+package CDM1.RobertoAlarcon;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
 	private static Scanner scn = new Scanner(System.in);
+	private static boolean salir;
 	
 	public static void main(String[] args) {
 		int numero;
@@ -68,7 +70,10 @@ public class Main {
 	 * Suma dos matrices
 	 */
 	public static void suma() {
-
+		// Inicializa el atributo seguir
+		salir = false;
+		
+		do {
 		int matriz1[][] = generarMatriz(1);
 		int matriz2[][] = generarMatriz(2);
 
@@ -80,16 +85,18 @@ public class Main {
 
 			// Imprime la matriz resultante de la suma
 			imprimirMatriz(resultado);
+			salir = true;
 		} else {
 			System.out.println("\nLas matrices introducidas no son de igual tamaño y por ello no se pueden sumar. Introduce dos matrices de igual tamaño. \n");
 		}
+		}while(!salir); // Que las matrices introducidas cumplan la condicion
 	}
 
 	/*
 	 * Multiplica una matriz por un número entero.
 	 */
 	public static void multiplicarMatrizPorNumeroEntero() {
-
+		
 		int matriz1[][] = generarMatriz(1);
 
 		System.out.println("\n¿Por qué número quieres multiplicarla?");
@@ -110,7 +117,11 @@ public class Main {
 	 * Multiplica una matriz por otra matriz.
 	 */
 	public static void multiplicarMatrizPorUnaMatriz() {
-
+		
+		// Inicializa el atributo seguir
+		salir = false;
+				
+		do {		
 		int matriz1[][] = generarMatriz(1);
 		int matriz2[][] = generarMatriz(2);
 
@@ -126,6 +137,7 @@ public class Main {
 			System.out.println(
 					"\nEl número de filas de la primera matriz debe ser igual al número de filas de la segunda matriz. \n");
 		}
+		}while(!salir); // Que las matrices introducidas cumplan la condicion
 	}
 
 	/*
@@ -151,6 +163,10 @@ public class Main {
 	 */
 	public static void diagonalPrincipal() {
 
+		// Inicializa el atributo seguir
+		salir = false;
+				
+		do {	
 		int matriz1[][] = generarMatriz(1);
 
 		// Condición de que la matriz sea cuadrada
@@ -172,6 +188,7 @@ public class Main {
 			System.out.println(
 					"\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la diagonal principal\n");
 		}
+		}while(!salir); // Que la matriz introducidas cumplan la condicion
 	}
 
 	/*
@@ -179,6 +196,10 @@ public class Main {
 	 */
 	public static void simetrica() {
 
+		// Inicializa el atributo seguir
+		salir = false;
+						
+		do {			
 		int matriz1[][] = generarMatriz(1);
 		int filasPorColumnas = matriz1.length * matriz1[0].length;
 		int contador = 0;
@@ -204,6 +225,7 @@ public class Main {
 		} else {
 			System.out.println("\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada\n");
 		}
+		}while(!salir); // Que las matrices introducidas cumplan la condicion
 	}
 
 	/*
@@ -211,6 +233,10 @@ public class Main {
 	 */
 	public static void potencia() {
 
+		// Inicializa el atributo seguir
+		salir = false;
+						
+		do {	
 		int matriz1[][] = generarMatriz(1);
 		
 		System.out.println("\nA que numero quiere elevarla. \n");
@@ -232,6 +258,7 @@ public class Main {
 			System.out.println("\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la matriz resultante\n");
 		
 		}
+		}while(!salir); // Que la matriz introducidas cumplan la condicion
 	}
 
 	/*
@@ -239,6 +266,10 @@ public class Main {
 	 */
 	public static void resta() {
 
+		// Inicializa el atributo seguir
+		salir = false;
+						
+		do {	
 		int matriz1[][] = generarMatriz(1);
 		int matriz2[][] = generarMatriz(2);
 
@@ -255,6 +286,7 @@ public class Main {
 			System.out.println(
 					"\nLas matrices introducidas no son de igual tamaño y por ello no se pueden restar. Introduce dos matrices de igual tamaño. \n");
 		}
+		}while(!salir); // Que las matrices introducidas cumplan la condicion
 	}
 
 	/*
