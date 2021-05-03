@@ -1,6 +1,6 @@
 /*
  * @author Roberto Alarcon Bardon
- * @version 01-05-2021
+ * @version 03-05-2021
  */
 
 package CDM1.RobertoAlarcon;
@@ -83,7 +83,7 @@ public class Main {
 			int matriz2[][] = crearMatriz(2);
 	
 			// Condicion de que las matrices sean iguales en tamaño
-			if ((matriz1.length == matriz2.length && matriz1[0].length == matriz2[0].length)) { // No consigo hacer que la condicion funcione con el switch
+			if (condicionDos(matriz1, matriz2, "suma")) {
 	
 				// Introduce numeros a las matrices
 				llenarMatriz(matriz1, 1);
@@ -213,7 +213,7 @@ public class Main {
 				System.out.println(
 						"\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la diagonal principal.\n");
 			}
-		}while(!salir); // Que la matriz introducidas cumplan la condicion
+		}while(!salir); // Que la matriz introducida cumpla la condicion
 	}
 
 	/*
@@ -296,7 +296,7 @@ public class Main {
 				System.out.println("\nLa matriz introducida no es cuadrada. Introduce una matriz cuadrada para hallar la matriz resultante\n");
 			
 			}
-		}while(!salir); // Que la matriz introducidas cumplan la condicion
+		}while(!salir); // Que la matriz introducidas cumpla la condicion
 	}
 
 	/*
@@ -312,8 +312,8 @@ public class Main {
 			int matriz2[][] = crearMatriz(2);
 
 			// Condicion de que las matrices sean iguales en tamaño
-			if ((matriz1.length == matriz2.length && matriz1[0].length == matriz2[0].length)) { // No consigo hacer que la condicion funcione con el switch
-	
+			if(condicionDos(matriz1, matriz2, "resta")) {
+				
 				// Introduce numeros a las matrices
 				llenarMatriz(matriz1, 1);
 				llenarMatriz(matriz2, 2);
@@ -461,6 +461,7 @@ public class Main {
 			case "simetrica":
 			case "potencia":
 					cumple = (matriz1.length == matriz1[0].length);
+					break;
 		}
 		return cumple;
 	}
@@ -475,12 +476,14 @@ public class Main {
 	public static boolean condicionDos(int matriz1[][], int matriz2[][], String tipo) {
 		boolean cumple = false;
 		switch(tipo) {
-			/*case "suma": 
+			case "suma": 
 			case "resta":
-				cumple = (matriz1.length == matriz2.length && matriz1[0].length == matriz2[0].length);
-				*/
+				cumple = ((matriz1.length == matriz2.length) && (matriz1[0].length == matriz2[0].length));
+				break;
+				
 			case "multiplicacion":
 				cumple = matriz1[0].length == matriz2.length;
+				break;
 		}
 		return cumple;
 	}
